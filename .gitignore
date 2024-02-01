@@ -1,0 +1,6 @@
+css/
+images/
+js/
+index.html
+!translator/css/
+!translator/js/

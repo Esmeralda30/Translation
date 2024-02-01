@@ -1,0 +1,78 @@
+/* 
+ * Translator
+ * Copyright (c) 2023 Bickert Web & Design
+ * Licensed under the MIT license
+ * https://bickert-web-design.de 
+ */
+
+:root {
+  --body_gradient_left: #330f50;
+  --body_gradient_right: #bb93b9;
+}
+
+
+.langPanel{
+  position: fixed;
+  top: 58vh;
+  left: 100%;
+  z-index: 5;
+}
+
+.langItem {
+  position: relative;
+  transition: left 300ms ease 0ms;
+  left: calc(100% - 410px);
+  background: linear-gradient(
+    to right,
+    var(--body_gradient_left),
+    var(--body_gradient_right)
+  );
+  height: 60px;
+  color: #fff;
+  min-width: 350px;
+}
+
+.langItem:hover {
+  left: -100%;
+  transition: left 300ms ease 0ms;
+}
+
+.translator_language_index {
+  display: flex;
+  -webkit-flex-wrap:wrap;
+}
+
+.RightLanguageIcon {
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  float: left;
+}
+
+.RightLanguageIcon img {
+  width: 35px;
+  display: block;
+  max-width: 100%;
+}
+
+.flexContainer.aligncenter {
+  align-items: center;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+
+}
+
+.RightLanguage:hover {
+  text-decoration: none;
+}
+
+.RightLanguage {
+  color: #fff;
+  width: calc(100% - 60px);
+  padding: 3px;
+}
+
+.RightLanguage select {
+  width: 150px;
+  font-size: 15px;
+}

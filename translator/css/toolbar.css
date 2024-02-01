@@ -1,0 +1,171 @@
+/* 
+ * Translator
+ * Copyright (c) 2023 Bickert Web & Design
+ * Licensed under the MIT license
+ * https://bickert-web-design.de 
+ */
+
+ :root {
+  --body_gradient_left: #330f50;
+  --body_gradient_right: #bb93b9;
+  --form_bg: #ffffff;
+  --input_bg: #e5e5e5;
+  --input_hover: #eaeaea;
+  --submit_bg: #6604d6;
+  --submit_hover: #9563f3;
+  --icon_color: #6b6b6b;
+  --translation_modal_header_bg: #330f50;
+  --translation_modal_header_color: #fff;
+}
+
+ html {
+  margin-top: 70px;
+ }
+
+.translator_toolbar,
+.translator_button,
+.translator_button_logout,
+.translator_button i,
+.translator_button_logout i {
+  height: 70px;
+  line-height: 70px;
+}
+
+.translator_logo_img {
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+}
+
+ .translator_toolbar {
+  /*background: rgba(245, 245, 245, .95);*/
+  background: linear-gradient(
+    to right,
+    var(--body_gradient_left),
+    var(--body_gradient_right)
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500;
+  color: #111;
+}
+
+.translator_logo {
+  font-weight: 700;
+  text-indent: 20px;
+  float: left;
+  font-size: 26px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.translator_logo a {
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.translator_logo a:hover {
+  text-shadow: #000;
+}
+
+.translator_buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.translator_button,
+.translator_button_logout {
+  float: left;
+  border-left: 0px solid #111;
+  color: #111;
+  padding: 0 20px;
+  font-size: 18px;
+  transition: background 0.2s;
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.translator_button:hover,
+.translator_button_logout:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+#translator_button_check,
+#translator_button_cancel,
+#choosen_translation_language {
+  display: none;
+}
+
+#choosen_translation_language {
+  text-align: center;
+}
+
+
+/* TOOLBAR SETTINGS -------------------------*/
+
+#translator_Settings_Modal .modal-header {
+  background: linear-gradient(
+    to right,
+    var(--body_gradient_left),
+    var(--body_gradient_right)
+  );
+  color: var(--translation_modal_header_color);
+  font-weight: bold;
+}
+
+#translator_Settings_Modal .modal-header h1 {
+  font-weight: bold;
+}
+
+#translator_Settings_Modal .modal-header .fa-solid {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+#translator_Settings_Modal .modal-header #translator_Settings_Modal_Close {
+  color: var(--translation_modal_header_color);
+}
+
+#translator_Settings_Modal .modal-header #translator_Settings_Modal_Close:focus {
+  border: none;
+  box-shadow: none;
+}
+
+#translator_Settings_Modal .modal-body p {
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: bold;
+}
+
+#translator_Settings_Modal .modal-body .lang_group {
+  display: flex;
+}
+
+#translator_Settings_Modal .modal-body .lang_group .radio_lang {
+  width: -webkit-fill-available;
+}
+
+#translator_Settings_Modal .modal-footer #formLangSubmit,
+#translator_Settings_Modal .modal-footer #formLangClose {
+  background-color: var(--submit_bg);
+  border: none;
+}
+
+#translator_Settings_Modal .modal-footer #formLangSubmit:hover,
+#translator_Settings_Modal .modal-footer #formLangClose:hover {
+  background-color: var(--submit_hover);
+}
+
+
+/* BOOTSTRAP --------------------------------*/
+
+.modal-backdrop {
+  z-index: 5;
+}
