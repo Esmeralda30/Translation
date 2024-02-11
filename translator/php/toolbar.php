@@ -1,4 +1,10 @@
 <?php
+/* 
+ * Translator
+ * Copyright (c) Esmeralda30
+ * Licensed under the MIT license
+ */
+
 if(!file_exists('cms/lang/'.$lang.'.js')) { $lang = 'de'; } 
 
 $allKeys = array_keys($languageToTranslate);

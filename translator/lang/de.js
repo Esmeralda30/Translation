@@ -1,3 +1,11 @@
+/* 
+ * Translator
+ * Copyright (c) Esmeralda30
+ * Licensed under the MIT license
+ */
+
+/* ------------------------------------------------------------------------------- */
+
 var changes_saved = 'Die Änderungen wurden gespeichert.';
 var changes_not_saved = "Die Änderungen konnten nicht gespeichert werden.";
 var translator_settings_saved = "Die Einstellungen für den Translator wurden gespeichert.";
