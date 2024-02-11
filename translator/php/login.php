@@ -22,6 +22,4 @@ if ($name == $username && $password == $userpassword){
 }
 
 
-
-
 ?>

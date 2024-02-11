@@ -19,10 +19,4 @@ $languageToTranslate = array(
     "es" => "Español"
 );
 
-// Which classes or id's should be excluded from translation?
-$excludedFromTranslate = array(
-    "div.heading",
-    "div.lead"
-);
-
 ?>

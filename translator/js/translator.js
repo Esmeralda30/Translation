@@ -14,24 +14,8 @@ var currenturl = document.URL.split("translator.php")[0];
 
 function addLinkListener() {
   $('a').click(function (e) {
-    var target = $(this).attr("href");
-    target = target.replace(currenturl, '');
-
-    if (this.host !== location.host) {
       e.preventDefault();
-      //notify(external_link, 5000);
-    } else if (/#/i.test(target)) {
-      e.preventDefault();
-      window.location.href = 'translator.php?currentfile=' + target;
-    } else {
-      e.preventDefault();
-
-      if (!$('body').hasClass('editing'))
-        window.location.href = 'translator.php?currentfile=' + target;
-      else
-        console.log('Um eine andere Seite aufrufen zu können, müssen Sie erst speichern oder abbrechen.');
-      //notify('Um eine andere Seite aufrufen zu können, müssen Sie erst speichern oder abbrechen.', 5000);
-    }
+      Notify(changePage, null, null, "warning");
   });
 }
 
@@ -54,8 +38,8 @@ function getUniqueArray(unique) {
     unique.splice(jQuery.inArray("div#translator_button_cancel", unique), 1);
   if (jQuery.inArray("div#translator_button_logout", unique) != -1)
     unique.splice(jQuery.inArray("div#translator_button_logout", unique), 1);
-  if (jQuery.inArray("div.translator_notifications", unique) != -1)
-    unique.splice(jQuery.inArray("div.translator_notifications", unique), 1);
+  if (jQuery.inArray("div#translator_notifications", unique) != -1)
+    unique.splice(jQuery.inArray("div#translator_notifications", unique), 1);
   if (jQuery.inArray("div.translator_language", unique) != -1)
     unique.splice(jQuery.inArray("div.translator_language", unique), 1);
   if (jQuery.inArray("div.translator_toolbar", unique) != -1)
@@ -86,23 +70,6 @@ function getAllTextTagPaths() {
   }).get();
 
   var unique = entryReduce.reduce((prev, cur) => (prev.indexOf(cur) === -1) ? [...prev, cur] : prev, []);
-
-  $.ajax({
-    url: "translator/php/executed.php",
-    dataType: 'json',
-    async: false,
-    error: function () {
-        console.log("An error has occured!");
-    },
-    success: function (data) {
-      $(data).map(function (key, val) {
-        if ($.inArray(val, unique) != -1)
-        unique.splice( $.inArray(val, unique), 1 );
-      });
-    }
-  });
-
-  //console.log("entryReduce: " + unique);
 
   return getUniqueArray(unique).join(", ");
 }
@@ -146,7 +113,7 @@ function activateTinymce() {
     selector: tagPathArray,
     menubar: false,
     inline: true,
-    plugins: ['link', 'lists', 'autolink'],
+    plugins: ['link', 'lists' ],
     toolbar: [
       'undo redo | bold italic underline | fontfamily fontsize',
       'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent |',
@@ -214,6 +181,8 @@ function edit() {
   $('#translator_button_edit, #translator_button_settings').hide();
   $('#translator_button_check, #translator_button_cancel, #choosen_translation_language').show();
 
+  addLinkListener();
+
   getAllTranslations($('#session').val());
 
   var response = jQuery.ajax({
@@ -230,10 +199,6 @@ function edit() {
       data: {
         data: JSON.stringify(getDefaultLanguage())
       }
-    }).done(function () {
-      console.log("The file was created.");
-    }).fail(function () {
-      console.log("The file can't be created.");
     });
   } else if (response == "200") {
     checkDefaultLanguage();
@@ -252,21 +217,6 @@ function getTagPaths() {
   }).get();
 
   var unique = entry.reduce((prev, cur) => (prev.indexOf(cur) === -1) ? [...prev, cur] : prev, []);
-
-  $.ajax({
-    url: "translator/php/executed.php",
-    dataType: 'json',
-    async: false,
-    error: function () {
-        console.log("An error has occured!");
-    },
-    success: function (data) {
-      $(data).map(function (key, val) {
-        if ($.inArray(val, unique) != -1)
-          unique.splice( $.inArray(val, unique), 1 );
-      });
-    }
-  });
 
   return getUniqueArray(unique);
 }
@@ -315,17 +265,13 @@ function checkDefaultLanguage() {
       data: {
         data: JSON.stringify(d)
       }
-    }).done(function () {
-      console.log("The default translation was updated successfully.");
-    }).fail(function () {
-      console.log("The default translation couldn't be updated.");
     });
   });
 }
 
 /* ------------------------------------------------------------------------------- */
 
-function save() {
+function save(e) {
   disableTinymce();
 
   var sessionLang = $('#session').val();
@@ -360,16 +306,14 @@ function save() {
     $.ajax({
       type: 'POST',
       url: 'translator/php/save.php',
-      async: false,
       data: {
         data: JSON.stringify(transFile)
       }
     }).done(function () {
-      console.log("The translation was added successfully.");
+      Notify(changes_saved, null, null, 'success');
       location.reload();
-
     }).fail(function () {
-      console.log("The translation couldn't be added.");
+      Notify(changes_not_saved, null, null, 'danger');
     });
   });
 
@@ -400,10 +344,8 @@ function logout() {
 /* ------------------------------------------------------------------------------- */
 
 $(document).ready(function () {
-  addLinkListener();
-
   $('#translator_button_edit').click(function () { edit(); });
-  $('#translator_button_check').click(function () { save(); });
+  $('#translator_button_check').click(function (e) { save(e); });
   $('#translator_button_cancel').click(function () { cancel(); });
   $('#translator_button_logout').click(function () { logout(); });
 
@@ -420,10 +362,11 @@ $(document).ready(function () {
       url: "translator/php/save_settings.php",
       data: $('form.langModal').serialize(),
       success: function (msg) {
-        $("#translator_Settings_Modal").modal('hide');
+        $("#translator_Settings_Modal").modal('hide');        
       },
       error: function () {
-        console.log("failure");
+        e.preventDefault();
+        Notify(translator_settings_not_saved, null, null, 'danger');
       }
     });
   });
@@ -432,4 +375,6 @@ $(document).ready(function () {
     $('#lang_radio_group').remove();
     activateTinymce();
   });
+
+  
 });

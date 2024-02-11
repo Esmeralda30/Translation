@@ -34,6 +34,7 @@ body {
 #form_wrapper {
   width: 1000px;
   height: 500px;
+  position: relative;
   /* this will help us center it*/
   margin: auto;
   background-color: var(--form_bg);
@@ -89,7 +90,6 @@ input:-webkit-autofill:focus {
 
 .input_container:hover {
   background-color: var(--input_hover);
-  border: none !important;
 }
 
 .input_container {
@@ -108,7 +108,6 @@ input:-webkit-autofill:focus {
   font-size: 1.3rem;
   font-weight: 400;
   padding-left: 30px;
-  border: none !important;
 }
 
 .input_field:hover,
@@ -116,7 +115,6 @@ input:-webkit-autofill:focus {
 .input_field:active {
   /* remove the outline */
   outline: none;
-  border: none !important;
 }
 
 .input_submit,
@@ -141,8 +139,12 @@ input:-webkit-autofill:focus {
   cursor: pointer;
 }
 
-.input_submit {
+.translator_button_login {
   float: right;
+}
+
+#gotowebsite {
+  float: left;
 }
 
 h1,
@@ -172,6 +174,19 @@ i {
   color: var(--icon_color);
 }
 
+#form_bottom {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 25px;
+  color: #ff0000;
+}
+
+#form_bottom a {
+  color: #ff0000;
+  text-decoration: underline;
+}
+
 /* make it responsive */
 @media screen and (max-width: 768px) {
   /* make the layout  a single column and add some margin to the wrapper */
@@ -184,5 +199,9 @@ i {
   /* on small screen we don't display the image */
   #form_left {
     display: none;
+  }
+
+  #form_bottom {
+    font-size: 10px;
   }
 }

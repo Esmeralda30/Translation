@@ -9,15 +9,10 @@ $(document).ready(function () {
 
     $('#name').focus();
 
-    $('input').keypress(function (event) {
-        $('input').css('border', '1px solid #ddd').css('color', '#666').removeClass('wrong_name').removeClass('wrong_password');
-        $('.translator_button_login').removeClass('wrong_password');
-    });
-
+    // If the user presses the "Enter" key on the keyboard
     $('body').keypress(function (event) {
-        if (event.which == 13) { checkLogindata(); }
+        if (event.which == 13) { checkLogindata(); } 
     });
-
 
     $('.translator_button_login').click(function () {
         checkLogindata();
@@ -25,15 +20,13 @@ $(document).ready(function () {
 
     var isChrome = !!window.chrome;
     if (!isChrome) {
-        $('.translator_login').append('<div class="chromenotice">Für die &Uuml;bersetzung der Website mit <b>Bickert Web & Design Translator</b> sollten Sie Google Chrome verwenden!<br>Google Chrome kann <a href="https://www.google.de/chrome" target="_blank">hier</a> kostenlos heruntergeladen und installiert werden.</div>');
+        $('#form_bottom').append('<div class="chromenotice">Für die &Uuml;bersetzung der Website mit <b>Bickert Web & Design Translator</b> sollten Sie Google Chrome verwenden!<br>Google Chrome kann <a href="https://www.google.de/chrome" target="_blank">hier</a> kostenlos heruntergeladen und installiert werden.</div>');
     }
 });
 
 // -------------------------------------------------------------------------------------------- //
 
 function checkLogindata() {
-
-    $('.translator_button_login i').hide();
 
     name = $('#name').val();
     password = $('#password').val();
@@ -45,33 +38,22 @@ function checkLogindata() {
         success: function (response) {
             $('.translator_button_login').spin(false);
 
-            /*if (response == 'NO') { 
-              $('input').css('border', '1px solid #f00').css('color', '#f00'); 
-              $('#name').addClass('wrong_name');
-              $('#password, .translator_button_login').addClass('wrong_password');
-              $('.translator_button_login i').show();
-            }	*/
-
             if (response == 'OK') {
-                $('input').css('border', '1px solid green').css('color', 'green');
+                $('.input_container, .input_container:focus, .input_container:hover, .input_container:active').css('border', '2px solid green').css('color', 'green');
                 $('input').css('opacity', '1').delay(1000).queue(function () {
                     document.login.submit();
                 });
             }
 
             if (response == 'NO') {
-                $('input').css('border', '1px solid #f00').css('color', '#f00');
-                $('#name').addClass('wrong_name');
-                $('#password, .translator_button_login').addClass('wrong_password').delay(500).queue(function () {
+                $('.input_container, .input_container:focus, .input_container:hover, .input_container:active').css('border', '2px solid #f00').css('color', '#f00');
+                $('#password, .translator_button_login').delay(500).queue(function () {
                     location.reload(true);
                 });
-
             }
-
         }
     });
 }
-
 
 // -------------------------------------------------------------------------------------------- //
 
@@ -80,9 +62,6 @@ $(document).ready(function () {
     var currentfile = document.URL.split('currentfile=')[1];
     if (currentfile) { currentfile = currentfile.split('#')[0]; }
 
-    console.log("currentfile: " + currentfile);
-
-    $('#gotosite').attr('onclick', "location.href='" + currentfile + "'");
+    $('#gotosite, #gotowebsite').attr('onclick', "location.href='" + window.location.origin + "'");
     $('#gotologin').attr('onclick', "location.href='translator.php?currentfile=" + currentfile + "'");
-
 });

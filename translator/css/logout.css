@@ -66,6 +66,10 @@ body {
   padding: 10% 5%;
 }
 
+#form_right h1 {
+  text-align: center;
+}
+
 .input_submit {
   /* submit button has a different color and different padding */
   background-color: var(--submit_bg);
@@ -77,6 +81,7 @@ body {
   /* make the borders more round */
   border-radius: 30px;
   width: 47%;
+  font-size: 1.3rem;
 }
 
 .input_submit:hover{
@@ -84,4 +89,8 @@ body {
   /* simple color transition on hover */
   transition: background-color, 1s;
   cursor: pointer;
+}
+
+#gotologin {
+  float: right;
 }

@@ -9,6 +9,8 @@
 session_start(); 
 error_reporting(E_ALL ^ ~E_NOTICE); 
 
+
+
 // CHECK SETTINGSFILE
 if(!file_exists('translator/settings.php')) { 
     include 'translator/inc/error_settingsfile.html';
@@ -31,6 +33,7 @@ if (isset($_GET["action"])) {
     }
 }
 
+// LOGIN
 if ($_SESSION["name"] != $username) { 
     include 'translator/inc/login.html';
     exit();	
@@ -39,6 +42,7 @@ if ($_SESSION["name"] != $username) {
 $authorization = $_SESSION["authorization"];
 if ($authorization != 'OK') { 
     include 'translator/inc/login.html';
+    $currentfile = 'index.html';
     exit();	
     
 } else {

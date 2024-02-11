@@ -5,7 +5,7 @@
  * https://bickert-web-design.de 
  */
 
- :root {
+:root {
   --body_gradient_left: #330f50;
   --body_gradient_right: #bb93b9;
   --form_bg: #ffffff;
@@ -18,9 +18,9 @@
   --translation_modal_header_color: #fff;
 }
 
- html {
+html {
   margin-top: 70px;
- }
+}
 
 .translator_toolbar,
 .translator_button,
@@ -37,13 +37,11 @@
   margin-right: 20px;
 }
 
- .translator_toolbar {
+.translator_toolbar {
   /*background: rgba(245, 245, 245, .95);*/
-  background: linear-gradient(
-    to right,
-    var(--body_gradient_left),
-    var(--body_gradient_right)
-  );
+  background: linear-gradient(to right,
+      var(--body_gradient_left),
+      var(--body_gradient_right));
   position: fixed;
   top: 0;
   left: 0;
@@ -111,11 +109,9 @@
 /* TOOLBAR SETTINGS -------------------------*/
 
 #translator_Settings_Modal .modal-header {
-  background: linear-gradient(
-    to right,
-    var(--body_gradient_left),
-    var(--body_gradient_right)
-  );
+  background: linear-gradient(to right,
+      var(--body_gradient_left),
+      var(--body_gradient_right));
   color: var(--translation_modal_header_color);
   font-weight: bold;
 }
@@ -168,4 +164,17 @@
 
 .modal-backdrop {
   z-index: 5;
+}
+
+/*---- NOTIFICATIONS --------------------------*/
+
+#translator_notifications {
+  position: fixed;
+  width: 100vw;
+  z-index: 999;
+}
+
+#translator_notifications a.button.close {
+  padding-right: 20px;
+  float: right;
 }
