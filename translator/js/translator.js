@@ -101,7 +101,7 @@ function getSettingsForGoogleTranslation(textToTranslate) {
       format: 'html',
       source: 'de',
       model: 'nmt',
-      key: 'AIzaSyCl7fNcKez_eNIoGrz1wLBX6oyiFuLkcXk'
+      key: 'add_your_google_api_translation_key_here'
     }
   };
 }
