@@ -1,4 +1,4 @@
-# Translation
+# Translator
 
 ## About
 Translator funktioniert anders als andere Translator: Übersetzungen können direkt in bereits bestehende, statische HTML-Webseiten erfolgen. 
