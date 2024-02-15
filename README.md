@@ -19,3 +19,6 @@ Bei schwierigkeiten kann auch eingebauter Google Übersetzer helfen. Dabei kann 
    - linux: chmod 777 translator/lang
 4. Um die Funktion "Google Überstzer" zu nutzen, füge in der Datei translation/js/translator.js in der Zeile 104 Cloud Translation API Schlüssel.
    (Es reicht vollkommen aus wenn Basic edition (v2) verwendet wird) 
+
+## Einloggen
+"www.deine-url.de/translator" aufrufen und anmelden
